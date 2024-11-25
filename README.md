@@ -54,15 +54,47 @@ sudo chmod u+x+r *.sh
 
 ## 腳本指令使用參考
 
+### 單一伺服器
+
 ```bash
-sudo <sh> <subsite> <port> <image id> <ex>
+sudo ./create.sh <subsite> <port> <image id> <ex>
+sudo ./remove.sh <subsite> <port>
 ```
 
 範例：
 
 ```bash
-sudo create.sh php 9527 <image id> '--link mariadb -e PMA_HOST="mariadb"'
-sudo remove.sh php 9527
+sudo ./create.sh php 9527 <image id> '--link mariadb -e PMA_HOST="mariadb"'
+sudo ./remove.sh php 9527
 ```
+
+### 伺服器分離
+
+#### AP Server
+```bash
+sudo ./create_APSERVER.sh <subsite> <port> <image id> <ex>
+sudo ./remove_APSERVER.sh <subsite> <port>
+```
+
+範例：
+
+```bash
+sudo ./create_APSERVER.sh php 9527 <image id> '--link mariadb -e PMA_HOST="mariadb"'
+sudo ./remove_APSERVER.sh php 9527
+```
+
+#### Web Server
+```bash
+sudo ./create_WEBSERVER.sh <ip> <subsite> <port>
+sudo ./remove_WEBSERVER.sh <subsite>
+```
+
+範例：
+
+```bash
+sudo create_WEBSERVER.sh <ip> php 9527
+sudo remove_WEBSERVER.sh php
+```
+
 
 腳本預設 conf 檔為 `project.conf`，路徑為 `/etc/apache2/sites-enabled/project.conf`
